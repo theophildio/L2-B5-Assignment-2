@@ -169,3 +169,23 @@ SET
     conservation_status = 'Historic'
 WHERE
     discovery_date < '1800-01-01';
+
+-- Label sighting time of day
+SELECT
+    sighting_id,
+    CASE
+        WHEN EXTRACT(
+            HOUR
+            FROM sighting_time
+        ) < 12 THEN 'Morning'
+        WHEN EXTRACT(
+            HOUR
+            FROM sighting_time
+        ) >= 12
+        AND EXTRACT(
+            HOUR
+            FROM sighting_time
+        ) < 17 THEN 'Afternoon'
+        ELSE 'Evening'
+    END AS time_of_day
+FROM sightings;
