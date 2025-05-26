@@ -146,3 +146,10 @@ FROM rangers r
 GROUP BY
     r.ranger_id,
     r.name;
+
+-- Species never sighted
+SELECT sp.common_name
+FROM species sp
+    LEFT JOIN sightings s ON sp.species_id = s.species_id
+WHERE
+    s.sighting_id IS NULL;
