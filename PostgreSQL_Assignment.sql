@@ -145,7 +145,8 @@ FROM rangers r
     LEFT JOIN sightings s ON r.ranger_id = s.ranger_id
 GROUP BY
     r.ranger_id,
-    r.name;
+    r.name
+ORDER BY r.name ASC;
 
 -- Species never sighted
 SELECT sp.common_name
