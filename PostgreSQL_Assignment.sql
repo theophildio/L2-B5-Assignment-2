@@ -189,3 +189,12 @@ SELECT
         ELSE 'Evening'
     END AS time_of_day
 FROM sightings;
+
+-- Delete rangers with no sightings
+DELETE FROM rangers
+WHERE
+    ranger_id NOT IN (
+        SELECT DISTINCT
+            ranger_id
+        FROM sightings
+    );
